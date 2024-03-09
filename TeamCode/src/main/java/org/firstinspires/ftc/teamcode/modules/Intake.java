@@ -11,28 +11,23 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 @Config
 public class Intake {
     private final DcMotorEx intake;
-    public static double intakePower = 1;
-    public static double extakePower = -1;
-    public static double offPower = 0;
+    public enum IntakePower {
+        INTAKE(1),
+        EXTAKE(-1),
+        OFF(0);
+        public double power;
+
+        IntakePower(double power){
+            this.power = power;
+        }
+    }
     public Intake(HardwareMap hardwareMap) {
         intake = hardwareMap.get(DcMotorEx.class, "intake");
     }
 
-    public Action INTAKE() {
+    public Action setState(IntakePower powerState) {
         return packet -> {
-            intake.setPower(intakePower);
-            return false;
-        };
-    }
-    public Action EXTAKE() {
-        return packet -> {
-            intake.setPower(extakePower);
-            return false;
-        };
-    }
-    public Action OFF() {
-        return packet -> {
-            intake.setPower(offPower);
+            intake.setPower(powerState.power);
             return false;
         };
     }

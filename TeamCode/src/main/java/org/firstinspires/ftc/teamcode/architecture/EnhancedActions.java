@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.actions;
+package org.firstinspires.ftc.teamcode.architecture;
 
 import androidx.annotation.NonNull;
 
@@ -23,8 +23,8 @@ public class EnhancedActions {
         @Override
         public boolean run(@NonNull TelemetryPacket p) {
             Context.robot.updatePoseEstimate();
-           // boolean reached = Math.abs(Context.robot.pose.position.x - position) <= threshold;
-            boolean reached = Context.robot.returnIfReached(1000); // just to test since no actual robot
+            boolean reached = Math.abs(Context.robot.pose.position.x - position) <= threshold;
+          // boolean reached = Context.robot.returnIfReached(1000); // just to test since no actual robot
             if (reached /* || on action end */) {
                 for (Action action: f) action.run(p);
                 return false;

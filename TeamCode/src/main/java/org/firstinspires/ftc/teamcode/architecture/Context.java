@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.hardware.lynx.LynxModule;
 
 import org.firstinspires.ftc.teamcode.actions.RobotActions;
+import org.firstinspires.ftc.teamcode.modules.Arm;
 import org.firstinspires.ftc.teamcode.modules.Intake;
 import org.firstinspires.ftc.teamcode.opmodes.tele.wolfdrive.WolfDrive;
 public class Context {
@@ -18,6 +19,7 @@ public class Context {
     public  static LynxModule expansionHub;
 
     public static Intake intake;
+    public static Arm arm;
 
     public static Pose2d farRedStart = new Pose2d(0,0,0);
     public static Pose2d farBlueStart = new Pose2d(0,0,0);

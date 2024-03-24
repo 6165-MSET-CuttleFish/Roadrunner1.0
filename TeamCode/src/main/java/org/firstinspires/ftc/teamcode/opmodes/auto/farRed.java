@@ -23,8 +23,10 @@ public class farRed extends EnhancedOpMode {
 
     @Override
     public void linearOpMode() {
-        Actions.runBlocking(AutoActions.posTrajectory);
-        Actions.runBlocking(AutoActions.timeTrajectory);
+        AutoActions actions = new AutoActions();
+
+        Actions.runBlocking(actions.posTrajectory);
+        Actions.runBlocking(actions.timeTrajectory);
         die();
     }
 }

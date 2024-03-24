@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Arm extends SubsystemBase {
 
-    private ServoImplEx leftServo;
-    private ServoImplEx rightServo;
+    private ServoImplEx leftServo, rightServo;
     private TrapezoidProfile.Constraints constraints =
             new TrapezoidProfile.Constraints(1.6, 1.8);
     private TrapezoidProfile armProfile =
@@ -37,7 +36,6 @@ public class Arm extends SubsystemBase {
         leftServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
         rightServo.setPwmRange(new PwmControl.PwmRange(500, 2500));
     }
-
     @Override
     public void periodic(){
         if(!armProfile.isFinished(timer.seconds())) {
@@ -53,21 +51,19 @@ public class Arm extends SubsystemBase {
             isRunning = false;
         }
 
-
     }
 
     //Set the servos to a numerical position
     public void setPosition(double target) {
 
-        //Create a new profile starting from the last position command
+        timer.reset();
         if(prevTarget != target){
             armProfile = new TrapezoidProfile(
                     constraints,
                     new TrapezoidProfile.State(target, 0),
                     new TrapezoidProfile.State(leftServo.getPosition(), 0)
             );
-
-            timer.reset();
+            periodic();
         }
 
         prevTarget = target;

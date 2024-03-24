@@ -1,0 +1,14 @@
+CHUB:
+    Motors:
+        0: fl
+        1: fr
+        2: bl
+        3: br
+
+    Servos:
+        0: Claw
+        1:
+
+    Encoders:
+        0: parallel (fr)
+        3: perpendicular (br)

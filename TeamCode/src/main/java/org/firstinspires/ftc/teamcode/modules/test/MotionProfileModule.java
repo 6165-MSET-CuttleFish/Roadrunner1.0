@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.modules;
+package org.firstinspires.ftc.teamcode.modules.test;
 
 import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.command.SubsystemBase;
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class Arm extends SubsystemBase {
+public class MotionProfileModule extends SubsystemBase {
 
     private ServoImplEx leftServo, rightServo;
     private TrapezoidProfile.Constraints constraints =
@@ -28,7 +28,7 @@ public class Arm extends SubsystemBase {
             this.position = position;
         }
     }
-    public Arm(HardwareMap hardwareMap){
+    public MotionProfileModule(HardwareMap hardwareMap){
 
         leftServo = hardwareMap.get(ServoImplEx.class, "leftArm");
         rightServo = hardwareMap.get(ServoImplEx.class, "rightArm");

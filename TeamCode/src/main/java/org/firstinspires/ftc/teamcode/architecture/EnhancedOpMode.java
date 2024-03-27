@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.architecture;
 
+import com.arcrobotics.ftclib.gamepad.KeyReader;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public abstract class EnhancedOpMode extends LinearOpMode {
@@ -10,8 +11,15 @@ public abstract class EnhancedOpMode extends LinearOpMode {
         waitForStart();
 
         linearOpMode();
+
+        Context.keyReaders = Robot.keyReaders;
         while (opModeIsActive()) {
             primaryLoop();
+            for (KeyReader reader : Context.keyReaders)
+            {
+                reader.readValue();
+            }
+
         }
     }
     public abstract void primaryLoop();

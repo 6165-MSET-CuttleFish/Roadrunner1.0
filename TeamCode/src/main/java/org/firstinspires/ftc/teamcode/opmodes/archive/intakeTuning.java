@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.tuning;
+package org.firstinspires.ftc.teamcode.opmodes.archive;
 
 import static org.firstinspires.ftc.teamcode.architecture.Context.intake;
 
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.architecture.Context;
 import org.firstinspires.ftc.teamcode.architecture.EnhancedOpMode;
-import org.firstinspires.ftc.teamcode.modules.Intake;
+import org.firstinspires.ftc.teamcode.modules.test.Intake;
 
 @Config
 @TeleOp(name = "Intake Tuning", group = "Tuning")

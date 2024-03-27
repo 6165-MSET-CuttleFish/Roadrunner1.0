@@ -1,25 +1,29 @@
 package org.firstinspires.ftc.teamcode.actions;
 
 import static org.firstinspires.ftc.teamcode.architecture.Context.robot;
-import static org.firstinspires.ftc.teamcode.roadrunner.Constraints.A;
-import static org.firstinspires.ftc.teamcode.roadrunner.Constraints.V;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.Vector2d;
 
 public class Trajectories {
-    public static Action traj = robot.actionBuilder(robot.pose)
-            .lineToYSplineHeading(33, Math.toRadians(0), V(30), A(30, 50))
-            .lineToX(30)
+    public Action purple_yellow = robot.actionBuilder(robot.pose)
+            .lineToY(-58)
+            .splineToConstantHeading(new Vector2d(10, -42), Math.toRadians(90))
+            .splineToConstantHeading(new Vector2d(10, -36), Math.toRadians(90))
+            .lineToY( -35)
+            .splineToConstantHeading(new Vector2d(20, -30), Math.toRadians(0))
+            .splineToConstantHeading(new Vector2d(35, -30), Math.toRadians(0))
             .build();
-    public static Action traj2 = robot.actionBuilder(robot.pose)
-            .lineToYSplineHeading(33, Math.toRadians(0), V(30), A(30, 50))
-            .lineToX(30)
+    public Action stack1 = robot.actionBuilder(robot.pose)
+            .splineToConstantHeading(new Vector2d(10, -12), Math.toRadians(180))
+            .lineToX(-40)
             .build();
 
-    public static Action traj3 = robot.actionBuilder(robot.pose)
-            .lineToYSplineHeading(33, Math.toRadians(0), V(30), A (30, 50))
-            .lineToX(30)
+    public Action back1 = robot.actionBuilder(robot.pose)
+            .lineToX(10)
+            .splineToSplineHeading(new Pose2d(30, -20, Math.toRadians(150)), Math.toRadians(-30))
             .build();
 
-    public static Action[] action = {traj, traj2, traj3};
+    public Action[] action = {purple_yellow, stack1, back1};
 }

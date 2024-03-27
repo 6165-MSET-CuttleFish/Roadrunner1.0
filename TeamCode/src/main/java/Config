@@ -12,3 +12,12 @@ CHUB:
     Encoders:
         0: parallel (fr)
         3: perpendicular (br)
+
+
+Things to do:
+1. Test statics and try updating dashboard vals
+2. Tune Extendo & Arm PID
+3. Tune Claw/Wrist Values
+4. Config and do RR tuning
+5. Test trajectory architecture + awaitX and awaitCondition
+

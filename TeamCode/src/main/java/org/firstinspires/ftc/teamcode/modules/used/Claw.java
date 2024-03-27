@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.modules;
+package org.firstinspires.ftc.teamcode.modules.used;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
 public class Claw {
-    private final Servo claw;
+    public final Servo claw;
     public static ClawPosition positionState = ClawPosition.CLOSED;
 
     public enum ClawPosition {
         CLOSED(1),
-        OPEN(-1);
+        OPEN(0);
 
         public double position;
         ClawPosition(double position){
@@ -22,8 +22,6 @@ public class Claw {
     public Claw(HardwareMap hardwareMap) {
         claw = hardwareMap.get(Servo.class, "claw");
     }
-
-
     public Action setState(ClawPosition positionState) {
         Claw.positionState = positionState;
         return packet -> {
@@ -32,6 +30,9 @@ public class Claw {
         };
     }
 
+    public void forcePos(double pos) {
+        claw.setPosition(pos);
+    }
     public Action toggle() {
         if (claw.getPosition() == ClawPosition.CLOSED.position) {
             Claw.positionState = ClawPosition.OPEN;

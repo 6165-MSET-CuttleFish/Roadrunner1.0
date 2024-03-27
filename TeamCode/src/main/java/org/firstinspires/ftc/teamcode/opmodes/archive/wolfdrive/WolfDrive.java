@@ -1,12 +1,10 @@
-package org.firstinspires.ftc.teamcode.opmodes.tele.wolfdrive;
+package org.firstinspires.ftc.teamcode.opmodes.archive.wolfdrive;
+
+import static org.firstinspires.ftc.teamcode.architecture.Context.robot;
 
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
-
-import org.firstinspires.ftc.teamcode.architecture.Context;
-import static org.firstinspires.ftc.teamcode.architecture.Context.robot;
-import org.firstinspires.ftc.teamcode.architecture.Robot;
 
 public class WolfDrive {
     public static double maxVelocityX = 77; // max positive straight velocity. TODO: Record using MaxVelStraightTest.
@@ -25,8 +23,7 @@ public class WolfDrive {
     public Vector2d centripetalVectorDrawn = null;
     public Vector2d robotDriveDirectionDrawn = null;
     private final RingBuffer positionBuffer = new RingBuffer(3);
-    public WolfDrive(Robot robot) {
-        Context.robot = robot;
+    public WolfDrive() {
         updateWheelForceVectors();
     }
 

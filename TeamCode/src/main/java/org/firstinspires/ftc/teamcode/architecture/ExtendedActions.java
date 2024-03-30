@@ -5,6 +5,7 @@ import com.acmerobotics.dashboard.canvas.Canvas;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,9 +29,12 @@ public final class ExtendedActions {
         a.preview(c);
         boolean b = true;
 
+        ElapsedTime timer = new ElapsedTime();
+        int counter = 0;
+
         while(b && !Thread.currentThread().isInterrupted()) {
             Context.tel=new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry(), telemetry);
-            TelemetryReadout.addTelemetry();
+            TelemetryReadout.addTelemetry(counter, timer);
             TelemetryPacket p = new TelemetryPacket();
             List var10000 = p.fieldOverlay().getOperations();
             List var10001 = c.getOperations();

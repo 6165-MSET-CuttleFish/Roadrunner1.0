@@ -1,28 +1,39 @@
 package org.firstinspires.ftc.teamcode.architecture;
 
-import static org.firstinspires.ftc.teamcode.architecture.Context.controlHub;
-import static org.firstinspires.ftc.teamcode.architecture.Context.expansionHub;
-import static org.firstinspires.ftc.teamcode.architecture.Context.intake;
+import static org.firstinspires.ftc.teamcode.architecture.Context.arm;
+import static org.firstinspires.ftc.teamcode.architecture.Context.extendo;
 import static org.firstinspires.ftc.teamcode.architecture.Context.robot;
 import static org.firstinspires.ftc.teamcode.architecture.Context.tel;
+
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.roadrunner.TwoDeadWheelLocalizer;
 
 public class TelemetryReadout {
-    public static void addTelemetry() {
-        header("Pose");
+    public static void addTelemetry(int counter, ElapsedTime timer) {
+        header();
+
         tel.addData("Pose", robot.getPose());
         tel.addData("Velocity", TwoDeadWheelLocalizer.getVelocity());
 
-        header("Current Draw");
-        tel.addData("Total Current", robot.getCurrent());
-        tel.addData("Control Hub Servos", robot.getServoBusCurrent(controlHub));
-        tel.addData("Expansion Hub Servos", robot.getServoBusCurrent(expansionHub));
-        tel.addData("Intake", intake.getCurrent());
+        header();
+
+        tel.addData("Extendo", extendo.getCurrent());
+        tel.addData("Arm", arm.getCurrent());
+
+        header();
+
+        tel.addData("Loop Times", timer.milliseconds()/counter);
+
+        tel.update();
+
+
+
     }
-    public static void header(String s) {
+
+    public static void header() {
+        tel.addLine();
         tel.addLine("-------------------------");
-        tel.addLine(s);
         tel.addLine();
     }
 }

@@ -10,6 +10,7 @@ import static org.firstinspires.ftc.teamcode.modules.used.Extendo.ExtendoPositio
 import static org.firstinspires.ftc.teamcode.opmodes.tele.teleOp.Mode.DEPOSIT;
 import static org.firstinspires.ftc.teamcode.opmodes.tele.teleOp.Mode.PICKUP;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -25,9 +26,9 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.architecture.EnhancedOpMode;
 import org.firstinspires.ftc.teamcode.architecture.Robot;
-import org.firstinspires.ftc.teamcode.architecture.TelemetryReadout;
 import org.firstinspires.ftc.teamcode.modules.used.Extendo;
 
+@Config
 @TeleOp (name="I like to move it move it")
 public class teleOp extends EnhancedOpMode {
     GamepadEx g1, g2;
@@ -67,7 +68,6 @@ public class teleOp extends EnhancedOpMode {
         }
 
         tel.addData("Deposit Mode", activeMode.name());
-        TelemetryReadout.addTelemetry();
         tel.update();
     }
     @Override
@@ -75,7 +75,7 @@ public class teleOp extends EnhancedOpMode {
         g1 = new GamepadEx(gamepad1);
         g2 = new GamepadEx(gamepad2);
 
-        robot = new Robot(this, poseStorage, telemetry);
+        robot = new Robot(this, poseStorage);
 
         keyReaders = new KeyReader[]{
                 A = new ToggleButtonReader(g1, GamepadKeys.Button.A),

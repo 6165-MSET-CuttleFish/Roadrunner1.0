@@ -19,7 +19,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.architecture.EnhancedOpMode;
 import org.firstinspires.ftc.teamcode.architecture.Robot;
-import org.firstinspires.ftc.teamcode.architecture.TelemetryReadout;
 import org.firstinspires.ftc.teamcode.modules.used.Extendo;
 
 @TeleOp (name="Macro Tuning", group="Tuning")
@@ -60,15 +59,13 @@ public class macroTuning extends EnhancedOpMode {
         }
 
         tel.addData("Deposit Mode", activeMode.name());
-        TelemetryReadout.addTelemetry();
-        tel.update();
     }
     @Override
     public void initialize() {
         g1 = new GamepadEx(gamepad1);
         g2 = new GamepadEx(gamepad2);
 
-        robot = new Robot(this, poseStorage, telemetry);
+        robot = new Robot(this, poseStorage);
 
         keyReaders = new KeyReader[]{
                 A = new ToggleButtonReader(g1, GamepadKeys.Button.A),

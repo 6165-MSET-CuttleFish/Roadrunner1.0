@@ -4,6 +4,7 @@ import static org.firstinspires.ftc.teamcode.architecture.Context.autoActions;
 import static org.firstinspires.ftc.teamcode.architecture.Context.poseStorage;
 import static org.firstinspires.ftc.teamcode.architecture.Context.robot;
 
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -19,14 +20,17 @@ public class farRed extends EnhancedOpMode {
     }
     @Override
     public void initialize() {
-        robot = new Robot(this, Context.farRedStart, telemetry);
+        robot = new Robot(this, Context.closeRedStart);
     }
 
     @Override
     public void linearOpMode() {
-        Actions.runBlocking(autoActions.purple_yellow);
-        Actions.runBlocking(autoActions.stack1);
-        Actions.runBlocking(autoActions.back1);
+
+        Actions.runBlocking(new SequentialAction(
+                autoActions.purple_yellow,
+                autoActions.stack1,
+                autoActions.back1
+        ));
         poseStorage = robot.pose;
         die();
     }

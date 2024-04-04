@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.roadrunner;
 
+import static com.acmerobotics.roadrunner.Curves.project;
+
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.canvas.Canvas;
@@ -90,7 +92,10 @@ public class MecanumDrive {
         public double headingVelGain = 0.0; // shared with turn
     }
 
+    private double lastDisp;
     public static Params PARAMS = new Params();
+
+    DualNum<Time> paramNum = new DualNum<>(new double[3]); // literally don't know why you can't just pass Time as the parameter but whatever
 
     public final MecanumKinematics kinematics = new MecanumKinematics(
             PARAMS.inPerTick * PARAMS.trackWidthTicks, PARAMS.inPerTick / PARAMS.lateralInPerTick);
@@ -252,9 +257,6 @@ public class MecanumDrive {
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
     }
-    public void dtInit() {
-
-    }
     public void setDrivePowers(PoseVelocity2d powers) {
         MecanumKinematics.WheelVelocities<Time> wheelVels = new MecanumKinematics(1).inverse(
                 PoseVelocity2dDual.constant(powers, 1));
@@ -272,6 +274,8 @@ public class MecanumDrive {
 
     public final class FollowTrajectoryAction implements Action {
         public final TimeTrajectory timeTrajectory;
+        public final DisplacementTrajectory displacementTrajectory;
+
         private double beginTs = -1;
 
         private final double[] xPoints, yPoints;
@@ -289,6 +293,7 @@ public class MecanumDrive {
                 xPoints[i] = p.position.x;
                 yPoints[i] = p.position.y;
             }
+            displacementTrajectory = new DisplacementTrajectory(t.path, t.profile.dispProfile);
         }
 
         @Override
@@ -309,8 +314,13 @@ public class MecanumDrive {
 
                 return false;
             }
+            double d = project(displacementTrajectory.path, pose.position, lastDisp);
+            lastDisp = d;
+            Pose2dDual<Arclength> arcTarget = displacementTrajectory.path.get(d, 3);
 
-            Pose2dDual<Time> txWorldTarget = timeTrajectory.get(t);
+            Pose2dDual<Time> txWorldTarget = new Pose2dDual<> (arcTarget.position.reparam(paramNum), arcTarget.heading.reparam(paramNum));
+            // might be losing 2nd and 3rd derivative in the reparam I'm not sure
+
             targetPoseWriter.write(new PoseMessage(txWorldTarget.value()));
 
             PoseVelocity2d robotVelRobot = updatePoseEstimate();
@@ -495,7 +505,7 @@ public class MecanumDrive {
                         )
                 ),
                 beginPose, 0.0,
-                defaultTurnConstraints,
+                 defaultTurnConstraints,
                 defaultVelConstraint, defaultAccelConstraint
         );
     }

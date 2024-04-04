@@ -10,7 +10,7 @@ import com.qualcomm.hardware.lynx.LynxModule;
 
 import org.firstinspires.ftc.teamcode.actions.AutoActions;
 import org.firstinspires.ftc.teamcode.actions.RobotActions;
-import org.firstinspires.ftc.teamcode.actions.Trajectories;
+import org.firstinspires.ftc.teamcode.actions.BigT;
 import org.firstinspires.ftc.teamcode.modules.test.Intake;
 import org.firstinspires.ftc.teamcode.modules.test.MotionProfileModule;
 import org.firstinspires.ftc.teamcode.modules.used.Arm;
@@ -22,7 +22,7 @@ public class Context {
     public static WolfDrive drive;
     public static RobotActions robotActions;
     public static AutoActions autoActions;
-    public static Trajectories trajectories;
+    public static BigT trajectories;
     public static LynxModule[] hubs;
     public  static LynxModule controlHub;
     public  static LynxModule expansionHub;

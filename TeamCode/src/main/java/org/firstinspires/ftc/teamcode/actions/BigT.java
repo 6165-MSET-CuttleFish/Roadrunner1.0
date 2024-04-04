@@ -6,7 +6,7 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 
-public class Trajectories {
+public class BigT {
     public Action purple_yellow = robot.actionBuilder(robot.pose)
             .lineToY(-58)
             .splineToConstantHeading(new Vector2d(10, -42), Math.toRadians(90))

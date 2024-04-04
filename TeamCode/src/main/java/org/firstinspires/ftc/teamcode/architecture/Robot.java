@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.LynxModuleImuType;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.actions.AutoActions;
 import org.firstinspires.ftc.teamcode.actions.RobotActions;
-import org.firstinspires.ftc.teamcode.actions.Trajectories;
+import org.firstinspires.ftc.teamcode.actions.BigT;
 import org.firstinspires.ftc.teamcode.modules.used.Arm;
 import org.firstinspires.ftc.teamcode.modules.used.Extendo;
 import org.firstinspires.ftc.teamcode.opmodes.archive.wolfdrive.WolfDrive;
@@ -32,9 +32,9 @@ public class Robot extends MecanumDrive {
 
     public static KeyReader[] keyReaders;
     public Robot(LinearOpMode opMode, Pose2d pose) {
-        super(opMode.hardwareMap, pose, false);
+        super(opMode.hardwareMap, pose);
         Context.autoActions = new AutoActions();
-        Context.trajectories = new Trajectories(); // re-initialize statics
+        Context.trajectories = new BigT(); // re-initialize statics
         Context.drive = new WolfDrive();
         
         g1 = new GamepadEx(opMode.gamepad1);

@@ -51,8 +51,14 @@ dependencies {
     implementation "com.acmerobotics.roadrunner:ftc:0.1.13"
     implementation "com.acmerobotics.roadrunner:core:1.0.0-beta7"
     implementation "com.acmerobotics.roadrunner:actions:1.0.0-beta7"
-    implementation "com.acmerobotics.dashboard:dashboard:0.4.14"
+    implementation "com.acmerobotics.dashboard:dashboard:0.4.15"
     implementation 'org.ftclib.ftclib:vision:2.1.0' // vision
     implementation 'org.ftclib.ftclib:core:2.1.1' // core
     implementation 'org.team11260:fast-load:0.1.2'
+    implementation('commons-validator:commons-validator:1.4.1'){
+        exclude group: 'commons-logging'
+        exclude group: 'commons-collections'
+        exclude group: 'commons-digester'
+        exclude group: 'commons-beanutils'
+    }
 }
